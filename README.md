@@ -47,7 +47,7 @@ Această aplicație oferă informații despre  vremea și calitatea aerului loca
 	
 	Pentru a memora latitudinea și longitudinea într-o bază de date a serverului, s-a folosit NeDB, un subset al MangoDB. Pentru aceasta nu s-a folosit autentificare. Astfel, de fiecare dată când se vor trimite informațiile către server, prin apăsare unui buton de Submit din interfața aplicației, latitudinea și longitudinea locației curente vor fi salvate într-un fișier denumit database.db.
 ![image](https://user-images.githubusercontent.com/64913985/81584343-4db38700-93bb-11ea-9bab-beee86b0bba8.png)
-![image](https://user-images.githubusercontent.com/64913985/81584384-5906b280-93bb-11ea-8a8f-b5ffbf9c842b.png)
+![image](https://user-images.githubusercontent.com/64913985/81586848-d97ae280-93be-11ea-935e-4c1e48b124e4.png)
 	
 	Având aceste elemente funcționale, a mai rămas doar integrarea cu API-urile descrise anterior. După obținerea unui API Key pentru Open Weather și revizuirea documentației acestuia, s-a trecut la implementare.
 	Pentru a accesa endpoint-ul /weather al API-ului în scriptul client-side s-a creat un “request” către acesta, răspunsul fiind obținut prin metoda fetch() și s-a transpus în formă de JSON.
@@ -67,7 +67,11 @@ Această aplicație oferă informații despre  vremea și calitatea aerului loca
 
 ## REFERINTE
 https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+
 https://docs.openaq.org/#api-Latest
+
 https://openweathermap.org/current#name
+
 http://expressjs.com/en/guide/routing.html
+
 https://dbdb.io/db/nedb
