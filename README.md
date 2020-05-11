@@ -60,7 +60,7 @@ Această aplicație oferă informații despre  vremea și calitatea aerului loca
 ![image](https://user-images.githubusercontent.com/64913985/81585099-52c50600-93bc-11ea-80d9-1482b65857be.png)
 	
 	A fost nevoie, din cauza erorilor CORS, să creez un alt endpoint în server care primește latitudinea și longitudinea iar apoi le trimite mai departe.
-![image](https://user-images.githubusercontent.com/64913985/81585545-fdd5bf80-93bc-11ea-988f-bc41cad0989d.png)
+![image](https://user-images.githubusercontent.com/64913985/81587888-578bb900-93c0-11ea-8624-a821aacce457.png)
 
 	La final, în consola aplicației se va observa conținutul celor două jsoane.
 ![image](https://user-images.githubusercontent.com/64913985/81586076-b4d23b00-93bd-11ea-874d-a99228bcd40a.png)
