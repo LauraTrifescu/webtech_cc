@@ -51,7 +51,7 @@ Această aplicație oferă informații despre  vremea și calitatea aerului loca
 	
 	Având aceste elemente funcționale, a mai rămas doar integrarea cu API-urile descrise anterior. După obținerea unui API Key pentru Open Weather și revizuirea documentației acestuia, s-a trecut la implementare.
 	Pentru a accesa endpoint-ul /weather al API-ului în scriptul client-side s-a creat un “request” către acesta, răspunsul fiind obținut prin metoda fetch() și s-a transpus în formă de JSON.
-![image](https://user-images.githubusercontent.com/64913985/81586928-f9aaa180-93be-11ea-98b7-a008bca0e7d1.png)
+![image](https://user-images.githubusercontent.com/64913985/81588042-93bf1980-93c0-11ea-944b-f21432489a62.png)
 	
 	URL-ul conține ca parametrii cheia API, latitudinea și longitudinea dar și unitatea de măsură pentru afișarea temperaturii. Informațiile generate de apelarea API-ului au fost scoase din JSON și afișate. 
 	Pentru a trimite latitudinea și longitudinea de la client, către server, pentru ca acesta să le poată transmite către Open Weather și să primească informații despre vreme ca mai apoi să le transmită către client s-a creat un nou endpoint.
