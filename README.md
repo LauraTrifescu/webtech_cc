@@ -55,8 +55,12 @@ Intro
 	
 	URL-ul conține ca parametrii cheia API, latitudinea și longitudinea dar și unitatea de măsură pentru afișarea temperaturii. Informațiile generate de apelarea API-ului au fost scoase din JSON și afișate. 
 	Pentru a trimite latitudinea și longitudinea de la client, către server, pentru ca acesta să le poată transmite către Open Weather și să primească informații despre vreme ca mai apoi să le transmită către client s-a creat un nou endpoint.
-	Având și această bucată funcțională, a mai rămas doar 
 	
+	Având și această bucată funcțională, a mai rămas doar accesarea API-ului Open AQ, pe același principiu.
+![image](https://user-images.githubusercontent.com/64913985/81585099-52c50600-93bc-11ea-80d9-1482b65857be.png)
+	
+	A fost nevoie, din cauza erorilor CORS, să creez un alt endpoint în server care primește latitudinea și longitudinea iar apoi le trimite mai departe.
+![image](https://user-images.githubusercontent.com/64913985/81585545-fdd5bf80-93bc-11ea-988f-bc41cad0989d.png)
 ### Ex de req, response
 
 ```json
