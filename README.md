@@ -61,12 +61,13 @@ Intro
 	
 	A fost nevoie, din cauza erorilor CORS, să creez un alt endpoint în server care primește latitudinea și longitudinea iar apoi le trimite mai departe.
 ![image](https://user-images.githubusercontent.com/64913985/81585545-fdd5bf80-93bc-11ea-988f-bc41cad0989d.png)
+
 	La final, în consola aplicației se va observa conținutul celor două jsoane.
 ![image](https://user-images.githubusercontent.com/64913985/81586076-b4d23b00-93bd-11ea-874d-a99228bcd40a.png)
-### Ex de req, response
 
-```json
-{
-    "ex":"test"
-}
-```
+## REFERINTE
+https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API
+https://docs.openaq.org/#api-Latest
+https://openweathermap.org/current#name
+http://expressjs.com/en/guide/routing.html
+https://dbdb.io/db/nedb
