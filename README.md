@@ -1,4 +1,4 @@
-# Weather and Air Quality Application
+# Vremea si Calitatea Aerului
 
 Această aplicație oferă informații despre  vremea și calitatea aerului locației curente.
 
