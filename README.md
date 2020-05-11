@@ -37,7 +37,7 @@ URL-ul folosit în aplicație este https://api.openaq.org/v1/latest?coordinates=
 După găsirea API-urilor potrivite, primul pas a fost crearea unui  server web cu ajutorul NodeJS și al framework-ului ExpressJS. Datele vor fi stocate într-o bază de date, iar accesul la acestea se face prin Sequelize.
 După inițializarea unei aplicații NodeJS, s-a început efectiv construirea serverului prin intermediul ExpressJs și s-a specificat portul pe care serverul va primi cereri HTTP.
 În continuare, s-a implementat Geolocation API-ul care accesează locația curentă și înregistrează latitudinea și longitudinea. Pentru a fi afișate în pagină, le-am apelat calea din JSON. Codul poate fi urmărit mai jos:
-![Cod creare server](file:///C:/Users/ltrifesc/Desktop/2.jpg)
+![image](https://user-images.githubusercontent.com/64913985/81583994-d3830280-93ba-11ea-8b42-57e6191108f8.png)
 ### Ex de req, response
 
 ```json
