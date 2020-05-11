@@ -61,6 +61,8 @@ Intro
 	
 	A fost nevoie, din cauza erorilor CORS, să creez un alt endpoint în server care primește latitudinea și longitudinea iar apoi le trimite mai departe.
 ![image](https://user-images.githubusercontent.com/64913985/81585545-fdd5bf80-93bc-11ea-988f-bc41cad0989d.png)
+	La final, în consola aplicației se va observa conținutul celor două jsoane.
+![image](https://user-images.githubusercontent.com/64913985/81586076-b4d23b00-93bd-11ea-874d-a99228bcd40a.png)
 ### Ex de req, response
 
 ```json
