@@ -25,6 +25,7 @@ Intro
 	Volumul de apă sau de zăpadă, dacă este cazul.
 	Un exemplu de apelare de API OpenWeather după denumirea orașului căutat este: https://api.openweathermap.org/data/2.5/weather?q=Bucharest&appid=${APIKEY}, unde APIKEY este cheia primită în urma conectării. 
 	URL-ul pe care l-am folosit în realizare aplicației este: https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}&units=metric, latitudinea și longitudinea fiind primite ca parametru din geolocație, iar ultimul parametru units=metric a fost adăugat pentru a converti temperatura din Kelvin (default) în grade Celsius.
+	
 ### OPENAQ
 	Paltforma Open AQ API oferă date despre calitatea aerului din numeroase orașe. API-urile sunt publice, așadar nu necesită niciun tip de autentificare. Folosind endpoint-ul /measurements  se pot apela informațiile cu ajutorul coordonatelor locației dorite. Mai sunt și alte modalități de apelare, precum id-ul sau denumirea locației. 
 	Răspunsul în urma cererii de la API vine sub formă de JSON și conține:
@@ -32,22 +33,27 @@ Intro
 	Parametrul găsit în analiza poluării (〖NO〗_2), Valuarea acestuia și Unitatea de măsură
 	Ultima dată când s-au prelucrat datele
 	Sursa acestor informații
-URL-ul folosit în aplicație este https://api.openaq.org/v1/latest?coordinates=${lat},${lon}, unde de asemenea primește parametrii latitudine și longitudine.
+	URL-ul folosit în aplicație este https://api.openaq.org/v1/latest?coordinates=${lat},${lon}, unde de asemenea primește parametrii latitudine și longitudine.
 ## Descriere arhitectura:
 	După găsirea API-urilor potrivite, primul pas a fost crearea unui  server web cu ajutorul NodeJS și al framework-ului ExpressJS. Datele vor fi stocate într-o bază de date, iar accesul la acestea se face prin Sequelize.
 	După inițializarea unei aplicații NodeJS, s-a început efectiv construirea serverului prin intermediul ExpressJs și s-a specificat portul pe care serverul va primi cereri HTTP.
 	În continuare, s-a implementat Geolocation API-ul care accesează locația curentă și înregistrează latitudinea și longitudinea. Pentru a fi afișate în pagină, le-am apelat calea din JSON. Codul poate fi urmărit mai jos:
+	
 ![image](https://user-images.githubusercontent.com/64913985/81583994-d3830280-93ba-11ea-8b42-57e6191108f8.png)
+	
 	Următorul pas a fost realizarea comunicării dintre client și server. Astfel, pentru a folosi coordonatele locației, a fost nevoie ca acestea să fie transmise către server și salvate ulterior într-o bază de date. Pentru aceasta s-a realizat o metodă HTTP POST care ajută serverul să primească informațiile. Endpoint-ul definit este /api. 
 	Fiecare endpoint din API-ul REST este definită de metoda HTTP și numele resursei la care se referă. Clientul va trimite datele prin cererea HTTP în format JSON. Datele se for accesa și manipula cu ajutorul metodei fetch() .
 ![image](https://user-images.githubusercontent.com/64913985/81584294-3bd1e400-93bb-11ea-928f-8caf353ab791.png)
+	
 	Pentru a memora latitudinea și longitudinea într-o bază de date a serverului, s-a folosit NeDB, un subset al MangoDB. Pentru aceasta nu s-a folosit autentificare. Astfel, de fiecare dată când se vor trimite informațiile către server, prin apăsare unui buton de Submit din interfața aplicației, latitudinea și longitudinea locației curente vor fi salvate într-un fișier denumit database.db.
 ![image](https://user-images.githubusercontent.com/64913985/81584343-4db38700-93bb-11ea-9bab-beee86b0bba8.png)
 ![image](https://user-images.githubusercontent.com/64913985/81584384-5906b280-93bb-11ea-8a8f-b5ffbf9c842b.png)
+	
 	Având aceste elemente funcționale, a mai rămas doar integrarea cu API-urile descrise anterior. După obținerea unui API Key pentru Open Weather și revizuirea documentației acestuia, s-a trecut la implementare.
 	Pentru a accesa endpoint-ul /weather al API-ului în scriptul client-side s-a creat un “request” către acesta, răspunsul fiind obținut prin metoda fetch() și s-a transpus în formă de JSON.
 ![image](https://user-images.githubusercontent.com/64913985/81584421-67ed6500-93bb-11ea-8485-7e57acfa5865.png)
-URL-ul conține ca parametrii cheia API, latitudinea și longitudinea dar și unitatea de măsură pentru afișarea temperaturii. Informațiile generate de apelarea API-ului au fost scoase din JSON și afișate. 
+	
+	URL-ul conține ca parametrii cheia API, latitudinea și longitudinea dar și unitatea de măsură pentru afișarea temperaturii. Informațiile generate de apelarea API-ului au fost scoase din JSON și afișate. 
 	Pentru a trimite latitudinea și longitudinea de la client, către server, pentru ca acesta să le poată transmite către Open Weather și să primească informații despre vreme ca mai apoi să le transmită către client s-a creat un nou endpoint.
 	Având și această bucată funcțională, a mai rămas doar 
 	
