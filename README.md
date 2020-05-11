@@ -1,6 +1,6 @@
-# Weather and Air Quality
+# Weather and Air Quality Application
 
-Intro
+Această aplicație oferă informații despre  vremea și calitatea aerului locației curente.
 
 ## Descrierea aplicației
 
