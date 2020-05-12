@@ -1,1 +1,86 @@
-<h1>HELLO</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .button {background-color: #555555; color: white;border: none;font-size: 25px}
+    </style>
+    <link rel="stylesheet" type="text/css"  href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body style="text-align:center"><br />
+    <h1 style="color: #483D8B">WEATHER INFORMATION</h1><br /> <br />
+    <h2 style="color: #cce6ff">
+      Latitude from your location: <span id="latitude"></span>&deg;<br /><br />
+      Longitude from your location: <span id="longitude"></span>&deg;<br /><br /><br />
+     </h2> 
+     <p style="font-size:28px;color:white"> 
+      You are in <span id="name"></span> and there is a temperature of <span id="temp"></span>&deg; Celsius.<br />
+      The concentration of Nitrogen Dioxide
+      (<span id="parameter"></span>) here is <span id="value"></span> <span id="unit"></span>.<br /><br /><br />
+   </p>
+    <button id="submit"  onclick="self.close()" class="button">SUMBIT</button>
+    <script>
+      let lat, lon;
+      
+      const button = document.getElementById('submit');
+      button.addEventListener('click', async event => {
+        const data = { lat, lon };
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        const response = await fetch('/api', options);
+        const json = await response.json();
+        console.log(json);
+      });
+
+      if ('geolocation' in navigator) {
+          console.log('geolocation available');
+          navigator.geolocation.getCurrentPosition(async position => {
+          lat = position.coords.latitude;
+          lon = position.coords.longitude;
+          document.getElementById('latitude').textContent = lat;
+          document.getElementById('longitude').textContent = lon;
+          
+          
+          const api_url = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=4e9f90c21002a038af331c4836321089&units=metric';
+          const response = await fetch(api_url);
+          const w_json =  await response.json();
+          
+          
+          document.getElementById('temp').textContent = w_json.main.temp;
+          document.getElementById('name').textContent = w_json.name;
+          
+          
+          const air_url = 'https://api.openaq.org/v1/latest?coordinates='+lat+','+lon;
+          const fetch_resp = await fetch(air_url);
+          const air_json = await fetch_resp.json();
+         
+          //console.log(air_json)
+          
+          const data= {
+            weather: w_json,
+            airqual: air_json
+          }
+          console.log(data);
+          
+          const air = data.airqual.results[0].measurements[0]
+          console.log(air)
+          document.getElementById('parameter').textContent = air.parameter;
+          document.getElementById('value').textContent = air.value;
+          document.getElementById('unit').textContent = air.unit;
+          
+          
+        });
+      } else {
+        console.log('geolocation not available');
+      }
+    </script>
+  </body>
+</html>

@@ -1,110 +1,58 @@
 const express = require('express')
-const Sequelize = require('sequelize')
-
-const sequelize = new Sequelize('database_name', 'username', 'pass', {
-    dialect: "mysql",
-    host: "localhost"
-})
-
-sequelize.authenticate().then(() => {
-    console.log("Connected to database")
-}).catch(() => {
-    console.log("Unable to connect to database")
-})
-
-const Messages = sequelize.define('messages', {
-    subject: Sequelize.STRING,
-    name: Sequelize.STRING,
-    message: Sequelize.TEXT
-})
-
 const app = express()
+const Datastore =require('nedb');
 
-app.use('/',express.static('frontend'))
-
-
-app.get('/hello',(request,response) => {
-    response.status(200).json({hello: process.env})
-})
-
-app.get('/test',(req,res)=> {
-    
-})
-
-app.get('/createdb', (request, response) => {
-    sequelize.sync({force:true}).then(() => {
-        response.status(200).send('tables created')
-    }).catch((err) => {
-        console.log(err)
-        response.status(200).send('could not create tables')
-    })
-})
+const fetch = require("node-fetch");
 
 app.use(express.json())
 app.use(express.urlencoded())
 
-//definire endpoint POST /messages
-app.post('/messages', (request, response) => {
-    Messages.create(request.body).then((result) => {
-        response.status(201).json(result)
-    }).catch((err) => {
-        response.status(500).send("resource not created")
-    })
+app.use('/',express.static('frontend'))
+
+const database = new Datastore('database.db');
+database.loadDatabase();
+
+//const allData = [];
+app.post('/api', (request, response) =>{
+    console.log("Request");
+    console.log(request.body);
+   
+    const data = request.body;
+
+    const timestamp = Date.now();
+    data.timestamp = timestamp;
+    
+    database.insert(data);
+    response.json({
+        status: 'success',
+        latitude: data.lat,
+        timestamp: timestamp,
+        longitude: data.lon
+    });
+});
+
+app.get ('/air:latlon', async (request, response) =>{
+	const latlon = request.param.latlon.split(',');
+	const lat = latlon[0];
+	const lon = latlon[1];
+	
+	const w_url = 'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=4e9f90c21002a038af331c4836321089&units=metric';
+    const w_response = await fetch(w_url);
+    const w_json =  await w_response.json();
+    
+    const a_url = 'https://api.openaq.org/v1/latest?coordinates='+lat+','+lon;
+    const a_resp = await fetch(a_url);
+    const a_json = await a_resp.json();
+    
+    const data = {
+   	weather: w_json,
+   	air_quality: a_json
+   }
+    response.json(data);
 })
 
-app.get('/messages', (request, response) => {
-    Messages.findAll().then((results) => {
-        response.status(200).json(results)
-    })
-})
 
-app.get('/messages/:id', (request, response) => {
-    Messages.findByPk(request.params.id).then((result) => {
-        if(result) {
-            response.status(200).json(result)
-        } else {
-            response.status(404).send('resource not found')
-        }
-    }).catch((err) => {
-        console.log(err)
-        response.status(500).send('database error')
-    })
-})
 
-app.put('/messages/:id', (request, response) => {
-    Messages.findByPk(request.params.id).then((message) => {
-        if(message) {
-            message.update(request.body).then((result) => {
-                response.status(201).json(result)
-            }).catch((err) => {
-                console.log(err)
-                response.status(500).send('database error')
-            })
-        } else {
-            response.status(404).send('resource not found')
-        }
-    }).catch((err) => {
-        console.log(err)
-        response.status(500).send('database error')
-    })
-})
 
-app.delete('/messages/:id', (request, response) => {
-    Messages.findByPk(request.params.id).then((message) => {
-        if(message) {
-            message.destroy().then((result) => {
-                response.status(204).send()
-            }).catch((err) => {
-                console.log(err)
-                response.status(500).send('database error')
-            })
-        } else {
-            response.status(404).send('resource not found')
-        }
-    }).catch((err) => {
-        console.log(err)
-        response.status(500).send('database error')
-    })
-})
-
-app.listen(process.env.PORT||8080)
+//app.listen(process.env.PORT||8080)
+app.listen(8080)

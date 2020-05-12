@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Titlu</title>
+    </head>
+    <body>
+        <div id="content">
+            
+        </div>
+        <script type="text/javascript">
+        
+            window.onload = async () => {
+                let url = 'https://date.nager.at/Api/v2/PublicHolidays/2020/RO'
+                
+                let response = await fetch(url)
+                let data = await response.json()
+                console.log(data)
+                
+                let list = document.createElement('ul')
+                
+                data.forEach((el) => {
+                    let listItem = document.createElement('li')
+                    listItem.innerHTML = el.name
+                    list.appendChild(listItem)
+                })
+                
+                document.getElementById('content').appendChild(list)
+            }
+        </script>
+    </body>
+</html>
