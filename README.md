@@ -1,10 +1,9 @@
 # Vremea si Calitatea Aerului
 
-Această aplicație oferă informații despre  vremea și calitatea aerului locației curente.
+De cele mai multe ori, trăind, poate, și într-un oraș aglomerat de mașini care circulă la orice oră și ticsit de fabrici și uzine, pe lângă datele meteorologice pe care le dorim să le aflăm zilnic, cantitatea poluării aerului ar fi o altă informație importantă de reținut înainte de a ieși din casă. Această aplicație oferă aceste detalii despre  vremea și calitatea aerului locației curente.
 
 ## Descrierea aplicației
 
-	De cele mai multe ori, trăind, poate, și într-un oraș aglomerat de mașini care circulă la orice oră și ticsit de fabrici și uzine, pe lângă datele meteorologice pe care le dorim să le aflăm zilnic, cantitatea poluării aerului ar fi o altă informație importantă de reținut înainte de a ieși din casă.
 	Prezenta aplicație înregistrează locația curentă folosirii și oferă astfel de informații despre vreme și calitatea aerului, mai exact nivelul de Dioxid de Azot, din respectiva locație. 
 	Pentru aceasta a fost nevoie să folosesc Geolocation API care permite utilizatorilor să își vadă locația prin coordonatele latitudine și longitudine, doar dacă aceștia își oderă acordul. Pentru accessarea informațiilor despre vreme, am folosit API-ul de la OpenWeather, iar datele despre calitatea aerului sunt oferite de OpenAQ.  Integrând toate acestea într-o singură aplicație, a fost posibilă vizualizarea tuturor informațiilor într-o singură pagină Web.
 
