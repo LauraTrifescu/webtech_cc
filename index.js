@@ -32,8 +32,20 @@ app.post('/api', (request, response) =>{
     });
 });
 
+app.get('/api', (request, response) =>{
+	database.find({}, (err, data) =>{
+		if (err){
+			response.end();
+			return;
+		}
+		response.json(data);
+	});
+});
+
 app.get ('/air:latlon', async (request, response) =>{
-	const latlon = request.param.latlon.split(',');
+	console.log(request.params);
+	const latlon = request.params.latlon.split(',');
+	console.log(latlon);
 	const lat = latlon[0];
 	const lon = latlon[1];
 	
