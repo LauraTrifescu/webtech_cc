@@ -16,18 +16,19 @@ De cele mai multe ori, trăind, poate, și într-un oraș aglomerat de mașini c
 ###### OPEN WEATHER
 	Printr-un OpenWeather API se pot accesa datele meteo curente pentru peste 200.000 de orașe. Acesta este disponibil printr-un API key primit în urma creării unui cont. Metodele de apelare ale unui API sunt multiple: cu ajutorului numelui orașului, al id-ului acestuia care se găsește în documentația online, prin coordonate sau altele. Având la dispoziție coordonatele oferite de Geolocation, apelarea API-ului se va face prin coordonatele de latitudine și longitudine.
 	Răspunsul de la API poate veni sub diferite forme: json, xml sau html. S-a ales varianta de afișare a răspunsului sub formă de json:
-	```
-	{coord : {
-	lon:26.11,
-	lat:44,43
-	},
-	weather: {
-	{
-	id:801,
-	main:"Clouds",
-	description:"Few clouds"
-	}
-	```
+	
+```
+{coord : {
+lon:26.11,
+lat:44,43
+},
+weather: {
+{
+id:801,
+main:"Clouds",
+description:"Few clouds"
+}
+```
 	Coordonatele locației (latitudine, longitudine)
 	O mică descriere a vremii (Ex: few clouds)
 	Temperatura, temperatura resimțită
