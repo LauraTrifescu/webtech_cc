@@ -18,15 +18,16 @@ De cele mai multe ori, trăind, poate, și într-un oraș aglomerat de mașini c
 	Răspunsul de la API poate veni sub diferite forme: json, xml sau html. S-a ales varianta de afișare a răspunsului sub formă de json:
 	
 ```
-{coord : {
-lon:26.11,
-lat:44,43
-},
-weather: {
 {
-id:801,
-main:"Clouds",
-description:"Few clouds"
+  "coord" : {
+    "lon":26.11,
+    "lat":44,43
+},
+  "weather": {
+{
+  "id":801,
+  "main":"Clouds",
+  "description":"Few clouds"
 }
 ```
 	Coordonatele locației (latitudine, longitudine)
