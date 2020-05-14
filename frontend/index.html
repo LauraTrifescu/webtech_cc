@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <style>
-      .button {background-color: #555555; color: white;border: none;font-size: 25px}
+      .button {background-color: #555555; color: white;border: none;font-size: 25px; }
     </style>
     <link rel="stylesheet" type="text/css"  href="style.css">
     <meta charset="UTF-8" />
@@ -22,12 +22,11 @@
       (<span id="parameter"></span>) here is <span id="value"></span> <span id="unit"></span>.<br /><br /><br />
    </p>
    <script>
-    function closeWindow() {
-        window.open('','_parent','');
-        window.close();
+    function myFunction() {
+    document.getElementById("submit").style.color = "#00bfff";
     }
-    </script> 
-    <button id="submit" onClick="closeWindow();;return false;" class="button">SUBMIT</button>
+   </script>
+    <button id="submit" onclick="myFunction()" class="button">SUBMIT</button>
     <script>
       let lat, lon;
       
