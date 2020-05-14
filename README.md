@@ -60,7 +60,7 @@ De cele mai multe ori, trăind, poate, și într-un oraș aglomerat de mașini c
 ![image](https://user-images.githubusercontent.com/64913985/81583994-d3830280-93ba-11ea-8b42-57e6191108f8.png)
 	
 	Următorul pas a fost realizarea comunicării dintre client și server. Astfel, pentru a folosi coordonatele locației, a fost nevoie ca acestea să fie transmise către server și salvate ulterior într-o bază de date. Pentru aceasta s-a realizat o metodă HTTP POST care ajută serverul să primească informațiile. Endpoint-ul definit este /api. 
-	Fiecare endpoint din API-ul REST este definită de metoda HTTP și numele resursei la care se referă. Clientul va trimite datele prin cererea HTTP în format JSON. Datele se for accesa și manipula cu ajutorul metodei fetch() .
+	Pentru fiecare endpoint din API-ul REST este definită de metoda HTTP și numele resursei la care se referă. Clientul va trimite datele prin cererea HTTP în format JSON. Datele se for accesa și manipula cu ajutorul metodei fetch() .
 ![image](https://user-images.githubusercontent.com/64913985/81584294-3bd1e400-93bb-11ea-928f-8caf353ab791.png)
 	
 	Pentru a memora latitudinea și longitudinea într-o bază de date a serverului, s-a folosit NeDB, un subset al MangoDB. Pentru aceasta nu s-a folosit autentificare. Astfel, de fiecare dată când se vor trimite informațiile către server, prin apăsare unui buton de Submit din interfața aplicației, latitudinea și longitudinea locației curente vor fi salvate într-un fișier denumit database.db.
